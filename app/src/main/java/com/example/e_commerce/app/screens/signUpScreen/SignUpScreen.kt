@@ -8,22 +8,17 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.text.input.TextFieldLineLimits
 import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults.buttonColors
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color.Companion.Black
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -32,6 +27,8 @@ import androidx.navigation.NavController
 import com.example.e_commerce.R
 import com.example.e_commerce.app.HomeScreen
 import com.example.e_commerce.app.ui.theme.MainColor
+import com.example.e_commerce.app.utils.AuthButton
+import com.example.e_commerce.app.utils.TextFieldsData
 import com.example.e_commerce.domain.entites.UsersEntity
 import com.example.e_commerce.domain.resources.Resources
 
@@ -62,8 +59,9 @@ fun SignUpScreen(modifier: Modifier = Modifier, navController: NavController) {
         is Resources.Initial -> {}
         is Resources.Loading -> {
         }
+
         is Resources.Success -> {
-            navController.navigate(HomeScreen){
+            navController.navigate(HomeScreen) {
                 popUpTo(HomeScreen) { inclusive = true }
             }
         }
@@ -80,6 +78,12 @@ fun SignUpScreenUi(
             .fillMaxSize()
             .padding(10.dp)
     ) {
+        val fullNameState = rememberTextFieldState()
+        val mobileNumberState = rememberTextFieldState()
+        val userNameState = rememberTextFieldState()
+        val emailState = rememberTextFieldState()
+        val passwordState = rememberTextFieldState()
+
         // Image
         Image(
             painter = painterResource(id = R.drawable.ic_app_name),
@@ -94,29 +98,11 @@ fun SignUpScreenUi(
         )
 
         // Full Name
-        Text(
-            text = "Full Name",
-            fontSize = 18.sp,
-            fontFamily = FontFamily.Monospace,
-            color = White,
-            modifier = Modifier.padding(vertical = 10.dp)
-        )
-
-        val fullNameState = rememberTextFieldState()
-        TextField(
+        TextFieldsData(
             state = fullNameState,
-            lineLimits = TextFieldLineLimits.SingleLine,
-            placeholder = { Text("Enter Your Full Name") },
-            modifier = Modifier.fillMaxWidth(),
-            shape = MaterialTheme.shapes.large,
-            colors = TextFieldDefaults.colors(
-                unfocusedContainerColor = White,
-                focusedTextColor = Black,
-                focusedContainerColor = White
-            ),
-            textStyle = TextStyle(
-                color = Black, fontSize = 16.sp, fontFamily = FontFamily.SansSerif
-            )
+            label = stringResource(R.string.full_name),
+            placeholder = stringResource(R.string.enter_your_name),
+            modifier = Modifier
         )
 
         Spacer(
@@ -126,29 +112,11 @@ fun SignUpScreenUi(
         )
 
         // Mobile Phone
-        Text(
-            text = "Mobile Number",
-            fontSize = 18.sp,
-            fontFamily = FontFamily.Monospace,
-            color = White,
-            modifier = Modifier.padding(vertical = 10.dp)
-        )
-
-        val mobileNumberState = rememberTextFieldState()
-        TextField(
+        TextFieldsData(
             state = mobileNumberState,
-            lineLimits = TextFieldLineLimits.SingleLine,
-            placeholder = { Text("Enter Your Mobile No.") },
-            modifier = Modifier.fillMaxWidth(),
-            shape = MaterialTheme.shapes.large,
-            colors = TextFieldDefaults.colors(
-                unfocusedContainerColor = White,
-                focusedTextColor = Black,
-                focusedContainerColor = White
-            ),
-            textStyle = TextStyle(
-                color = Black, fontSize = 16.sp, fontFamily = FontFamily.SansSerif
-            )
+            label = stringResource(R.string.mobile_number),
+            placeholder = stringResource(R.string.enter_your_mobile_no),
+            modifier = Modifier
         )
 
         Spacer(
@@ -158,29 +126,11 @@ fun SignUpScreenUi(
         )
 
         // UserName
-        Text(
-            text = "User Name",
-            fontSize = 18.sp,
-            fontFamily = FontFamily.Monospace,
-            color = White,
-            modifier = Modifier.padding(vertical = 10.dp)
-        )
-
-        val userNameState = rememberTextFieldState()
-        TextField(
+        TextFieldsData(
             state = userNameState,
-            lineLimits = TextFieldLineLimits.SingleLine,
-            placeholder = { Text("Enter Your User Name") },
-            modifier = Modifier.fillMaxWidth(),
-            shape = MaterialTheme.shapes.large,
-            colors = TextFieldDefaults.colors(
-                unfocusedContainerColor = White,
-                focusedTextColor = Black,
-                focusedContainerColor = White
-            ),
-            textStyle = TextStyle(
-                color = Black, fontSize = 16.sp, fontFamily = FontFamily.SansSerif
-            )
+            label = stringResource(R.string.user_name),
+            placeholder = stringResource(R.string.enter_your_user_name),
+            modifier = Modifier
         )
 
         Spacer(
@@ -190,29 +140,11 @@ fun SignUpScreenUi(
         )
 
         // Email
-        Text(
-            text = "Email Address",
-            fontSize = 18.sp,
-            fontFamily = FontFamily.Monospace,
-            color = White,
-            modifier = Modifier.padding(vertical = 10.dp)
-        )
-
-        val emailState = rememberTextFieldState()
-        TextField(
-            state = emailState,
-            lineLimits = TextFieldLineLimits.SingleLine,
-            placeholder = { Text("Enter Your Email Address") },
-            modifier = Modifier.fillMaxWidth(),
-            shape = MaterialTheme.shapes.large,
-            colors = TextFieldDefaults.colors(
-                unfocusedContainerColor = White,
-                focusedTextColor = Black,
-                focusedContainerColor = White
-            ),
-            textStyle = TextStyle(
-                color = Black, fontSize = 16.sp, fontFamily = FontFamily.SansSerif
-            )
+        TextFieldsData(
+            state = userNameState,
+            label = stringResource(R.string.email_address),
+            placeholder = stringResource(R.string.enter_your_email_address),
+            modifier = Modifier
         )
 
         Spacer(
@@ -222,29 +154,11 @@ fun SignUpScreenUi(
         )
 
         // Password
-        Text(
-            text = "Password",
-            fontSize = 18.sp,
-            fontFamily = FontFamily.Monospace,
-            color = White,
-            modifier = Modifier.padding(vertical = 10.dp)
-        )
-
-        val passwordState = rememberTextFieldState()
-        TextField(
+        TextFieldsData(
             state = passwordState,
-            lineLimits = TextFieldLineLimits.SingleLine,
-            placeholder = { Text("Enter Your Password") },
-            modifier = Modifier.fillMaxWidth(),
-            shape = MaterialTheme.shapes.large,
-            colors = TextFieldDefaults.colors(
-                unfocusedContainerColor = White,
-                focusedTextColor = Black,
-                focusedContainerColor = White
-            ),
-            textStyle = TextStyle(
-                color = Black, fontSize = 16.sp, fontFamily = FontFamily.SansSerif
-            )
+            label = stringResource(R.string.password),
+            placeholder = stringResource(R.string.enter_your_password),
+            modifier = Modifier
         )
 
         Spacer(
@@ -254,26 +168,14 @@ fun SignUpScreenUi(
         )
 
         // Sign In Button
-        Button(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 20.dp), onClick = {
-                onSignUpClicked(
-                    fullNameState.text.toString(),
-                    mobileNumberState.text.toString(),
-                    userNameState.text.toString(),
-                    emailState.text.toString(),
-                    passwordState.text.toString()
-                )
-            }, colors = buttonColors(containerColor = White, contentColor = MainColor)
-        ) {
-            Text(
-                "Sign Up",
-                fontSize = 20.sp,
-                fontFamily = FontFamily.SansSerif,
-                modifier = Modifier.padding(vertical = 10.dp)
+        AuthButton(text =stringResource(R.string.sign_up) ) {
+            onSignUpClicked(
+                fullNameState.text.toString(),
+                mobileNumberState.text.toString(),
+                userNameState.text.toString(),
+                emailState.text.toString(),
+                passwordState.text.toString()
             )
         }
-
     }
 }
