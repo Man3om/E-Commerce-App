@@ -13,7 +13,7 @@ interface UserDao {
     suspend fun getAll() : List<UsersDataModel>
 
     @Query("SELECT * FROM users WHERE username = :userName")
-    suspend fun getUserName(userName : String) : UsersDataModel
+    suspend fun getUserName(userName : String) : UsersDataModel?
 
     @Insert
     suspend fun insert(user : UsersDataModel)

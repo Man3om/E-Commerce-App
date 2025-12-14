@@ -13,50 +13,32 @@ class LocalDataSourceImpl @Inject constructor(private val appDatabase: AppDataba
     private val TAG = "LocalDataSourceImpl"
     override suspend fun getUserName(userName: String): Resources<UsersEntity> {
         Log.d(TAG, "At Start of getUserName: $userName")
-        try {
-            val user = appDatabase.userDao().getUserName(userName).toEntity()
 
-            if (user.username.isEmpty()) {
-                Log.d(TAG, "After getUserName: User not found")
-                return Resources.Error("User not found")
-            } else {
-                Log.d(TAG, "After getUserName: user Found => $user")
-                return Resources.Success(user)
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-            return Resources.Error("Couldn't get user : User not found")
+        val user = appDatabase.userDao().getUserName(userName)
+
+        return if (user == null) {
+            Log.d(TAG, "After getUserName: User not found")
+            Resources.Error("User not found")
+        } else {
+            val entity = user.toEntity()
+            Log.d(TAG, "After getUserName: User Found => $entity")
+            Resources.Success(entity)
         }
     }
 
     override suspend fun insertUser(user: UsersEntity): Resources<Unit> {
-        try {
-            appDatabase.userDao().insert(user.toDataModel())
-            return Resources.Success(Unit)
-        } catch (e: Exception) {
-            e.printStackTrace()
-            return Resources.Error("Couldn't insert user")
-        }
+        appDatabase.userDao().insert(user.toDataModel())
+        return Resources.Success(Unit)
     }
 
     override suspend fun updateUser(user: UsersEntity): Resources<Unit> {
-        try {
-            appDatabase.userDao().update(user.toDataModel())
-            return Resources.Success(Unit)
-        } catch (e: Exception) {
-            e.printStackTrace()
-            return Resources.Error("Couldn't update user")
-        }
+        appDatabase.userDao().update(user.toDataModel())
+        return Resources.Success(Unit)
     }
 
     override suspend fun deleteUser(user: UsersEntity): Resources<Unit> {
-        try {
-            appDatabase.userDao().delete(user.toDataModel())
-            return Resources.Success(Unit)
-        } catch (e: Exception) {
-            e.printStackTrace()
-            return Resources.Error("Couldn't delete user")
-        }
+        appDatabase.userDao().delete(user.toDataModel())
+        return Resources.Success(Unit)
     }
 
     override suspend fun getAllUsers(): Resources<List<UsersEntity>> {

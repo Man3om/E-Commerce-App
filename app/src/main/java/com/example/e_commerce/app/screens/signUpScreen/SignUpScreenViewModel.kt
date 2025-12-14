@@ -8,6 +8,7 @@ import com.example.e_commerce.domain.entites.UsersEntity
 import com.example.e_commerce.domain.repository.LocalRepo
 import com.example.e_commerce.domain.resources.Resources
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -17,6 +18,11 @@ class SignUpScreenViewModel @Inject constructor(private val repo: LocalRepo) : V
     private val TAG = "SignUpScreenViewModel"
     private val _resultState = mutableStateOf<Resources<Unit>>(Resources.Initial())
     var resultState = _resultState
+
+    private val handler = CoroutineExceptionHandler { _, exception ->
+        Log.d(TAG, "userSignUp: ${exception.message}")
+        _resultState.value = Resources.Error(exception.message.toString())
+    }
 
     fun userSignUp(
         user: UsersEntity
@@ -28,7 +34,7 @@ class SignUpScreenViewModel @Inject constructor(private val repo: LocalRepo) : V
             return
         }
 
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(Dispatchers.IO + handler) {
             Log.d(TAG, "userSignUp: $user")
             val state = repo.getUserName(user.username)
 

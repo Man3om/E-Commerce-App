@@ -21,6 +21,7 @@ retrofit = "3.0.0"
 roomRuntime = "2.8.4"
 roomKtx = "2.8.4"
 composeIcons = "1.7.8"
+runtime = "1.10.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -53,6 +54,7 @@ okhttp3-logging-interceptor = { module = "com.squareup.okhttp3:logging-intercept
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 squareup-okhttp = { module = "com.squareup.okhttp3:okhttp" }
 androidx-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended", version.ref = "composeIcons" }
+androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime", version.ref = "runtime" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

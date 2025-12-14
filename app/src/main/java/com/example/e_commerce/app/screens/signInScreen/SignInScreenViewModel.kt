@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.e_commerce.domain.repository.LocalRepo
 import com.example.e_commerce.domain.resources.Resources
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -17,6 +18,10 @@ class SignInScreenViewModel @Inject constructor(private val repo : LocalRepo) : 
     private val _resultState = mutableStateOf<Resources<Unit>>(Resources.Initial())
     var resultState = _resultState
 
+    private val handler = CoroutineExceptionHandler { _, exception ->
+        Log.d(TAG, "userLogIn: ${exception.message}")
+        _resultState.value = Resources.Error(exception.message.toString())
+    }
 
     fun userLogIn(username : String , password : String){
         _resultState.value = Resources.Loading()
@@ -25,19 +30,18 @@ class SignInScreenViewModel @Inject constructor(private val repo : LocalRepo) : 
             return
         }
         Log.d(TAG, "userLogIn: $username $password")
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(Dispatchers.IO + handler) {
             _resultState.value = logIn(username,password)
         }
     }
 
     private suspend fun logIn(username : String, password : String) : Resources<Unit> {
         val state = repo.getUserName(username)
-        val passwordHashing = password.hashCode()
 
         if(state is Resources.Success) {
             Log.d(TAG, "user is Exist ${state.response}")
 
-            if(passwordHashing == state.response.password){
+            if(password.hashCode() == state.response.password){
                 Log.d(TAG, "password is correct")
                 return Resources.Success(Unit)
             }
