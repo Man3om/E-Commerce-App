@@ -62,7 +62,7 @@ object NetworkingProvides {
         gsonConverterFactory: GsonConverterFactory
     ): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://newsapi.org/")
+            .baseUrl("https://ecommerce.routemisr.com/api/v1/")
             .client(okHttpClient)
             .addConverterFactory(gsonConverterFactory)
             .build()

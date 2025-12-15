@@ -170,11 +170,11 @@ fun SignUpScreenUi(
         // Sign In Button
         AuthButton(text =stringResource(R.string.sign_up) ) {
             onSignUpClicked(
-                fullNameState.text.toString(),
-                mobileNumberState.text.toString(),
-                userNameState.text.toString(),
-                emailState.text.toString(),
-                passwordState.text.toString()
+                fullNameState.text.toString().trim(),
+                mobileNumberState.text.toString().trim(),
+                userNameState.text.toString().trim(),
+                emailState.text.toString().trim(),
+                passwordState.text.toString().trim()
             )
         }
     }

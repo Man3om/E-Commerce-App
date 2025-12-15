@@ -11,3 +11,8 @@ interface LocalRepo{
     suspend fun deleteUser(user : UsersEntity) : Resources<Unit>
     suspend fun getAllUsers() : Resources<List<UsersEntity>>
 }
+
+interface RemoteRepo{
+    suspend fun signIn(user : UsersEntity) : Resources<Unit>
+    suspend fun signUp(user : UsersEntity) : Resources<Unit>
+}

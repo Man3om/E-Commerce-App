@@ -150,8 +150,8 @@ private fun SignInScreenUi(
         // Sign In Button
         AuthButton(text = stringResource(R.string.login)) {
             onSignInClicked(
-                usernameState.text.toString(),
-                passwordState.text.toString()
+                usernameState.text.toString().trim(),
+                passwordState.text.toString().trim()
             )
         }
 
