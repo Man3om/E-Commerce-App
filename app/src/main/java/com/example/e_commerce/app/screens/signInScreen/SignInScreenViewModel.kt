@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.e_commerce.domain.repository.LocalRepo
-import com.example.e_commerce.domain.resources.Resources
+import com.example.e_commerce.domain.utils.resources.Resources
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
@@ -41,7 +41,7 @@ class SignInScreenViewModel @Inject constructor(private val repo : LocalRepo) : 
         if(state is Resources.Success) {
             Log.d(TAG, "user is Exist ${state.response}")
 
-            if(password.hashCode() == state.response.password){
+            if(password == state.response.password){
                 Log.d(TAG, "password is correct")
                 return Resources.Success(Unit)
             }

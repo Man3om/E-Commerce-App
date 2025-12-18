@@ -11,8 +11,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.input.rememberTextFieldState
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults.buttonColors
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -27,7 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.e_commerce.domain.resources.Resources
+import com.example.e_commerce.domain.utils.resources.Resources
 import com.example.e_commerce.R
 import com.example.e_commerce.app.HomeScreen
 import com.example.e_commerce.app.SignUpScreen

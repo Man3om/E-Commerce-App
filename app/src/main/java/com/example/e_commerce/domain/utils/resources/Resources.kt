@@ -1,4 +1,4 @@
-package com.example.e_commerce.domain.resources
+package com.example.e_commerce.domain.utils.resources
 
 sealed interface Resources<T> {
     class Initial<T> : Resources<T>

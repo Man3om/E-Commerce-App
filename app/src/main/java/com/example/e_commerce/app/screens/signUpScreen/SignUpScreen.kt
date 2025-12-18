@@ -9,19 +9,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.input.rememberTextFieldState
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults.buttonColors
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.e_commerce.R
@@ -30,7 +24,7 @@ import com.example.e_commerce.app.ui.theme.MainColor
 import com.example.e_commerce.app.utils.AuthButton
 import com.example.e_commerce.app.utils.TextFieldsData
 import com.example.e_commerce.domain.entites.UsersEntity
-import com.example.e_commerce.domain.resources.Resources
+import com.example.e_commerce.domain.utils.resources.Resources
 
 
 @Composable
@@ -43,7 +37,7 @@ fun SignUpScreen(modifier: Modifier = Modifier, navController: NavController) {
                 fullName,
                 userName,
                 email,
-                password.hashCode(),
+                password,
                 mobileNumber
             )
         )

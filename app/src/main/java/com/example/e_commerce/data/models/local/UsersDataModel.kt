@@ -1,9 +1,7 @@
 package com.example.e_commerce.data.models.local
 
-import androidx.annotation.Nullable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import javax.annotation.Nonnull
 
 @Entity (tableName = "users")
 data class UsersDataModel(
@@ -11,6 +9,6 @@ data class UsersDataModel(
     @PrimaryKey
     val username: String,
     val email: String?,
-    val password: Int?,
+    val password: String?,
     val phone: String?
 )

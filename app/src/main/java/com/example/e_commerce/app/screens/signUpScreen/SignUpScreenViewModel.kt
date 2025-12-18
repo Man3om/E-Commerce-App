@@ -6,7 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.e_commerce.domain.entites.UsersEntity
 import com.example.e_commerce.domain.repository.LocalRepo
-import com.example.e_commerce.domain.resources.Resources
+import com.example.e_commerce.domain.repository.RemoteRepo
+import com.example.e_commerce.domain.utils.resources.Resources
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
@@ -14,7 +15,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SignUpScreenViewModel @Inject constructor(private val repo: LocalRepo) : ViewModel() {
+class SignUpScreenViewModel @Inject constructor(private val repo: LocalRepo , private val apiRepo : RemoteRepo) : ViewModel() {
     private val TAG = "SignUpScreenViewModel"
     private val _resultState = mutableStateOf<Resources<Unit>>(Resources.Initial())
     var resultState = _resultState

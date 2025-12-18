@@ -4,6 +4,6 @@ data class UsersEntity(
     val name: String?,
     val username: String,
     val email: String?,
-    val password: Int?,
+    val password: String?,
     val phone: String?
 )

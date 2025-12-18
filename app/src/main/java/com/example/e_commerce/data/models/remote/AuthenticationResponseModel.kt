@@ -5,20 +5,20 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
 @Parcelize
-data class AuthenticationResponse(
+data class AuthenticationResponseModel(
 
 	@field:SerializedName("message")
 	val message: String? = null,
 
 	@field:SerializedName("user")
-	val user: User? = null,
+	val user: UserModel,
 
 	@field:SerializedName("token")
 	val token: String? = null
 ) : Parcelable
 
 @Parcelize
-data class User(
+data class UserModel(
 
 	@field:SerializedName("role")
 	val role: String? = null,

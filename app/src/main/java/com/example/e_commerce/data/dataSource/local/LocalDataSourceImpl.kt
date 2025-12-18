@@ -6,7 +6,7 @@ import com.example.e_commerce.data.mappers.toDataModel
 import com.example.e_commerce.data.mappers.toEntity
 import com.example.e_commerce.domain.entites.UsersEntity
 import com.example.e_commerce.domain.repository.LocalRepo
-import com.example.e_commerce.domain.resources.Resources
+import com.example.e_commerce.domain.utils.resources.Resources
 import javax.inject.Inject
 
 class LocalDataSourceImpl @Inject constructor(private val appDatabase: AppDatabase) : LocalRepo {

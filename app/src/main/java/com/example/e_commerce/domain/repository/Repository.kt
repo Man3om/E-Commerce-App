@@ -1,7 +1,9 @@
 package com.example.e_commerce.domain.repository
 
+import com.example.e_commerce.domain.entites.AuthenticationResponseEntity
 import com.example.e_commerce.domain.entites.UsersEntity
-import com.example.e_commerce.domain.resources.Resources
+import com.example.e_commerce.domain.utils.apiResult.ApiResult
+import com.example.e_commerce.domain.utils.resources.Resources
 
 
 interface LocalRepo{
@@ -13,6 +15,6 @@ interface LocalRepo{
 }
 
 interface RemoteRepo{
-    suspend fun signIn(user : UsersEntity) : Resources<Unit>
-    suspend fun signUp(user : UsersEntity) : Resources<Unit>
+    suspend fun signIn(user : UsersEntity) : ApiResult<AuthenticationResponseEntity>
+    suspend fun signUp(user : UsersEntity) : ApiResult<AuthenticationResponseEntity>
 }
